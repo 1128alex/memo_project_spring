@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+header {
+	height: 100px;
+}
+
+section {
+	min-height: 500px;
+}
+
+footer {
+	height: 100px;
+}

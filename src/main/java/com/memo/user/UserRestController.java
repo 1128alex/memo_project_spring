@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.memo.common.EncryptUtils;
@@ -83,7 +84,7 @@ public class UserRestController {
 		String hashedPassword = EncryptUtils.md5(password);
 
 		// db select
-		User user = userBO.getUserByLoginIdPassword(loginId, password);
+		User user = userBO.getUserByLoginIdPassword(loginId, hashedPassword);
 
 		Map<String, Object> result = new HashMap<>();
 		if (user != null) {
@@ -95,7 +96,6 @@ public class UserRestController {
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userName", user.getName());
-
 		} else {
 			// 행이 없으면 로그인 실패
 			result.put("code", 500);
@@ -106,12 +106,4 @@ public class UserRestController {
 		return result;
 	}
 
-	@GetMapping("/sign_out")
-	public String signOut(HttpSession session) {
-		session.removeAttribute("userId");
-		session.removeAttribute("userLoginId");
-		session.removeAttribute("userName");
-
-		return "redirect:/user/sign_in_view";
-	}
 }

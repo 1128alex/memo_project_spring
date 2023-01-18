@@ -35,6 +35,6 @@ public class FileManagerService {
 
 		// 파일 업로드 성공했으면 이미지 url path를 리턴한다.
 		// http://localhost/images/aaaa_1630213213/sun.png
-		return "/images/" + directoryName + file.getOriginalFilename();
+		return "/Images/" + directoryName + file.getOriginalFilename();
 	}
 }

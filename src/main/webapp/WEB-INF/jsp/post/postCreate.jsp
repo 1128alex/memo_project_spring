@@ -10,6 +10,7 @@
 			placeholder="내용을 입력하세요"></textarea>
 		<div class="d-flex justify-content-end my-4">
 			<input type="file" id="file" accept=".jpg,.jpeg,.png,.gif">
+			<a href="#" id="fileUploadBtn"><img width="34" src=""></a>
 		</div>
 		<div class="d-flex justify-content-between mb-4">
 			<button type="button" id="postListBtn" class="btn btn-dark">목록</button>
@@ -32,7 +33,6 @@
 			$('#clearBtn').on('click', function() {
 				$('#subject').val('');
 				$('#content').val('');
-				$('#file').val('');
 			});
 
 			// 글 저장
@@ -68,12 +68,13 @@
 
 				// ajax 통신으로 formData에 있는 데이터 전송
 				$.ajax({
-					type : "POST",
+					type : "post",
 					url : "/post/create",
 					data : formData,
 					enctype : "multipart/form-data", // 파일 업로드를 위한 필수 설정
 					processData : false, // 파일 업로드를 위한 필수 설정
 					contentType : false, // 파일 업로드를 위한 필수 설정
+
 					success : function(data) {
 						if (data.code == 1) {
 							alert("메모가 저장되었습니다.");
@@ -83,7 +84,7 @@
 						}
 					},
 					error : function(e) {
-						alert("메모 저장에 실패했습니다.");
+						alert(e);
 					}
 				});
 			});

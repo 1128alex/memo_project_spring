@@ -27,7 +27,7 @@
 		$(document).ready(function() {
 			$('#loginForm').on('submit', function(e) {
 				// 서브밋 기능 중단
-				e.preventDefault;
+				e.preventDefault();
 
 				// validation
 				// return false;

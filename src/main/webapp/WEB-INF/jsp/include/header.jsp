@@ -10,8 +10,8 @@
 	<%-- 로그인 정보: 로그인이 되었을 때만 노출 --%>
 	<c:if test="${not empty userId}">
 		<div class="mr-4">
-			<span>${userName}님 안녕하세요</span> <a href="/user/sign_out"
-				class="ml-3 font-weight-bold">로그아웃</a>
+			<span><b>${userName}</b>님 안녕하세요!</span> <a href="/user/sign_out"
+				class="ml-3 text-white font-weight-bold">로그아웃</a>
 		</div>
 	</c:if>
 </div>

@@ -23,7 +23,7 @@
 		</form>
 	</div>
 
-	<script type="text/javascript">
+	<script>
 		$(document).ready(function() {
 			$('#loginForm').on('submit', function(e) {
 				// 서브밋 기능 중단
@@ -46,9 +46,7 @@
 
 				// ajax
 				let url = $(this).attr('action');
-				console.log(url);
 				let params = $(this).serialize(); // loginId=aaaa&password=aaaa
-				console.log(params);
 
 				$.post(url, params).done(function(data) {
 					if (data.code == 1) {

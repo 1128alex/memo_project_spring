@@ -10,11 +10,28 @@
 		`post`
 	</select>
 
+	<select id="selectPostList"
+		resultType="com.memo.post.model.Post">
+		SELECT
+		`id`
+		,`userId`
+		, `subject`
+		, `content`
+		, `imagePath`
+		,
+		`createdAt`
+		, `updatedAt`
+		FROM
+		`post`
+		ORDER BY `id`
+		DESC;
+	</select>
+
 	<insert id="insertPost" parameterType="map">
 		INSERT INTO `post`
 		(
 		`userId`
-		, `subject
+		, `subject`
 		, `content`
 		, `imagePath`
 		, `createdAt`
@@ -26,8 +43,8 @@
 		,#{subject}
 		,#{content}
 		,#{imagePath}
-		,now()
-		,now()
+		,NOW()
+		,NOW()
 		)
 	</insert>
 </mapper>

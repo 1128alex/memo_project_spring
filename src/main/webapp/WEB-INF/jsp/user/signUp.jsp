@@ -45,10 +45,11 @@
 						class="form-control" placeholder="이메일 주소를 입력하세요."></td>
 				</tr>
 			</table>
-			<br>
-
-			<button type="submit" id="signUpBtn"
-				class="btn btn-primary float-right">회원가입</button>
+			<div class="d-flex justify-content-between">
+				<a href="/user/sign_in_view" class="btn btn-dark">로그인</a>
+				<button type="submit" id="signUpBtn"
+					class="btn btn-primary float-right">회원가입</button>
+			</div>
 		</form>
 	</div>
 </div>

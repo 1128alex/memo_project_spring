@@ -35,4 +35,9 @@ public class PostBO {
 		// dao insert
 	}
 
+	public Post getPostByPostIdUserId(int postId, int userId) {
+		return postDAO.getPostByPostIdUserId(postId, userId);
+
+	}
+
 }

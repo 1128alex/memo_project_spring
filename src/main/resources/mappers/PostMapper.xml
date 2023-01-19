@@ -48,4 +48,24 @@
 		,NOW()
 		)
 	</insert>
+
+	<select id="getPostByPostIdUserId" parameterType="map"
+		resultType="com.memo.post.model.Post">
+		SELECT
+		`id`
+		,`userId`
+		, `subject`
+		, `content`
+		, `imagePath`
+		,
+		`createdAt`
+		,
+		`updatedAt`
+		FROM
+		`post`
+		WHERE
+		`userId` = #{userId}
+		AND `id` =
+		#{postId}
+	</select>
 </mapper>

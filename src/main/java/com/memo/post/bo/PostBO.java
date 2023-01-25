@@ -2,6 +2,8 @@ package com.memo.post.bo;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +14,8 @@ import com.memo.post.model.Post;
 
 @Service
 public class PostBO {
+	// private Logger logger = LoggerFactory.getLogger(PostBO.class);
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private PostDAO postDAO;
@@ -40,4 +44,28 @@ public class PostBO {
 
 	}
 
+	public void updatePost(int userId, String userLoginId, int postId, String subject, String content,
+			MultipartFile file) {
+
+		// 기존 글을 가져온다. (이미지가 교체될 때 기존 이미지 제거를 위해)
+		Post post = getPostByPostIdUserId(postId, userId);
+		if (post == null) {
+			logger.warn("[update post] 수정할 메모가 존재하지 않습니다. postId:{}, userId{}", postId, userId);
+			return;
+		}
+
+		// 멀티파일이 비어있지 않다면 업로드 후 imagePath
+		String imagePath = null;
+		if (file != null) {
+			imagePath = fileManagerService.saveFile(userLoginId, file);
+
+			if (imagePath != null && post.getImagePath() != null) {
+				fileManagerService.deleteFile(post.getImagePath());
+			}
+
+		}
+
+		// db 업데이트
+		postDAO.updatePostByPostIdUserId(postId, userId, subject, content, imagePath);
+	}
 }

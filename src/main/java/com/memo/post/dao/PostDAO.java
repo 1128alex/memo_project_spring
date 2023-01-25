@@ -19,4 +19,7 @@ public interface PostDAO {
 
 	public Post getPostByPostIdUserId(@Param("postId") int postId, @Param("userId") int userId);
 
+	public void updatePostByPostIdUserId(@Param("postId") int postId, @Param("userId") int userId, @Param("subject") String subject,
+			@Param("content") String content, @Param("imagePath") String imagePath);
+
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.memo.post.bo.PostBO;
-import com.memo.user.bo.UserBO;
 
 import jakarta.servlet.http.HttpSession;
 

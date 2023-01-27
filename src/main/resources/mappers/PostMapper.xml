@@ -93,4 +93,49 @@
 		WHERE
 		`id` = #{postId}
 	</delete>
+
+	<select id="selectPostListByUserId" parameterType="int"
+		resultType="com.memo.post.model.Post">
+		SELECT
+		`id`
+		,`userId`
+		,`subject`
+		,`content`
+		,`imagePath`
+		,`createdAt`
+		,`updatedAt`
+		FROM
+		`post`
+		WHERE
+		`userId` = #{userId}
+		<if test="direction == null">
+			ORDER BY `id` DESC
+		</if>
+		<if test="direction == 'next'">
+			<![CDATA[
+			AND `id` <  #{standardId}
+			]]>
+			ORDER BY `id` DESC
+		</if>
+		<if test="direction == 'prev'">
+			<![CDATA[
+			AND `id` >  #{standardId}
+			]]>
+		</if>
+		LIMIT ${limit}
+	</select>
+
+	<select id="selectPostIdByUserIdSort" parameterType="map"
+		resultType="int">
+		SELECT
+		`id`
+		FROM
+		`post`
+		WHERE
+		`userId` = #{userId}
+		ORDER BY `id`
+		${sort}
+		LIMIT 1
+	</select>
+
 </mapper>
